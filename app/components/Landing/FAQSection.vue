@@ -28,11 +28,15 @@ const faq = ref([
 </script>
 
 <template>
-  <div v-for="data in faq" class="collapse bg-base-100 border border-base-300">
-    <input type="radio" name="faq" checked />
-    <div class="collapse-title font-semibold">{{ data.title }}</div>
-    <div class="collapse-content text-sm">
-      {{ data.desc }}
+  <section>
+    <div class="flex flex-col justify-center items-center py-16 gap-2">
+      <div v-for="data in faq" class="collapse bg-base-100 border border-base-300 max-w-7xl">
+        <input type="radio" name="faq" checked />
+        <div class="collapse-title font-semibold">{{ data.title }}</div>
+        <div class="collapse-content text-sm">
+          {{ data.desc }}
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
