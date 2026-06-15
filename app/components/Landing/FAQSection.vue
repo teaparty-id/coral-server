@@ -28,7 +28,10 @@ const faq = ref([
 </script>
 
 <template>
-  <section>
+  <section class="py-24 bg-base-200">
+    <div class="text-center">
+      <h2 class="text-5xl font-black">Pertanyaan Yang Sering Ditanyakan</h2>
+    </div>
     <div class="flex flex-col justify-center items-center py-16 gap-2">
       <div v-for="data in faq" class="collapse bg-base-100 border border-base-300 max-w-7xl">
         <input type="radio" name="faq" checked />
