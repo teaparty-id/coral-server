@@ -21,17 +21,24 @@
         </div>
       </div>
 
-      <div class="flex w-full justify-center">
-        <div class="flex min-w-2xl">
+      <div class="flex flex-col w-full justify-center items-center">
+        <div class="flex flex-col lg:min-w-2xl max-w-2xl">
           <ul class="steps steps-vertical">
-            <li class="step step-primary">Download dan Install Coraline</li>
-            <li class="step step-primary">Download Coral-Agent</li>
-            <li class="step step-primary">Masukkan coral-agent-ps4.elf ke /data/payloads di PS4</li>
-            <li class="step step-primary">Jalankan payload dengan Payload Guests atau Payload Launcher Goldhen</li>
-            <li class="step step-primary">(Optional) Atur payload agar otomatis dimuat saat Goldhen dijalankan</li>
-            <li class="step step-primary">Buka tab Devices pada aplikasi Coraline dan Register device</li>
-            <li class="step step-primary">Aplikasi siap digunakan</li>
+            <li class="step step-primary text-start">Download dan Install Coraline</li>
+            <li class="step step-primary text-start">Download Coral-Agent</li>
+            <li class="step step-primary text-start">Masukkan coral-agent-ps4.elf ke /data/payloads di PS4</li>
+            <li class="step step-primary text-start">
+              Jalankan payload dengan Payload Guests atau Payload Launcher Goldhen
+            </li>
+            <li class="step step-primary text-start">
+              (Optional) Atur payload agar otomatis dimuat saat Goldhen dijalankan
+            </li>
+            <li class="step step-primary text-start">Buka tab Devices pada aplikasi Coraline dan Register device</li>
+            <li class="step step-primary text-start">Aplikasi siap digunakan</li>
           </ul>
+          <div role="alert" class="alert alert-warning alert-soft">
+            <span>Coraline masih dalam tahap pengembangan aktif, laporkan bug jika kamu menemukannya.</span>
+          </div>
         </div>
       </div>
     </div>

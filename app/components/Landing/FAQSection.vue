@@ -32,7 +32,7 @@ const faq = ref([
     <div class="text-center">
       <h2 class="text-5xl font-black">Pertanyaan Yang Sering Ditanyakan</h2>
     </div>
-    <div class="flex flex-col justify-center items-center py-16 gap-2">
+    <div class="flex flex-col justify-center items-center py-16 px-4 gap-2">
       <div v-for="data in faq" class="collapse bg-base-100 border border-base-300 max-w-7xl">
         <input type="radio" name="faq" checked />
         <div class="collapse-title font-semibold">{{ data.title }}</div>
