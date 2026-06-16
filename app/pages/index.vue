@@ -14,6 +14,8 @@
 
     <LandingFAQSection />
 
+    <LandingInstallSection />
+
     <LandingCTASection />
   </div>
 </template>

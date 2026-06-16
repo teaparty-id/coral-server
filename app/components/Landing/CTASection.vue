@@ -5,7 +5,9 @@
 
       <p class="text-xl mt-6 opacity-90">Modernisasi operasional rental PlayStation Anda dengan Coraline.</p>
 
-      <button class="btn btn-neutral btn-lg mt-10">Mulai Sekarang</button>
+      <NuxtLink to="#download">
+        <button class="btn btn-neutral btn-lg mt-10">Mulai Sekarang</button>
+      </NuxtLink>
     </div>
   </section>
 </template>

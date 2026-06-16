@@ -19,7 +19,7 @@ const problems = [
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="problem in problems" :key="problem" class="alert shadow-lg">
+        <div v-for="problem in problems" :key="problem" class="alert shadow-lg min-h-24">
           <span>{{ problem }}</span>
         </div>
       </div>
