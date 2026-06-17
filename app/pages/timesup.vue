@@ -7,8 +7,6 @@ definePageMeta({
 <template>
   <div class="min-h-screen bg-base-200 flex items-center justify-center">
     <div class="text-center px-6">
-      <div class="text-8xl mb-6">🎮</div>
-
       <h1 class="text-5xl font-bold mb-4">Time's Up</h1>
 
       <p class="text-xl mb-8">Waktu bermain telah habis.</p>

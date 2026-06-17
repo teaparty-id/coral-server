@@ -1,6 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
+  <Navbar />
   <div class="bg-base-100">
     <LandingHeroSection />
 
