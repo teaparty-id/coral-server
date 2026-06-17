@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <Navbar />
   <div class="bg-base-100">
-    <LandingHeroSection />
+    <Navbar />
+    <LandingHeroSection class="z-9999 relative" />
 
     <LandingTrustSection />
 
@@ -17,6 +17,6 @@
 
     <LandingInstallSection />
 
-    <LandingCTASection />
+    <LandingCTASection class="z-9999 relative" />
   </div>
 </template>
