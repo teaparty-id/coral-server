@@ -10,7 +10,7 @@
         "@nuxt/image": "2.0.0",
         "@tailwindcss/vite": "^4.3.1",
         "@types/node": "^25.9.3",
-        "daisyui": "^5.5.23",
+        "daisyui": "^5.6.2",
         "drizzle-kit": "^0.31.10",
         "drizzle-orm": "^0.45.2",
         "nuxt": "^4.4.8",
@@ -763,7 +763,7 @@
 
     "csstype": ["csstype@3.2.3", "", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
 
-    "daisyui": ["daisyui@5.5.23", "", {}, "sha512-xuheNUSL4T6ZVtWXoioqcNkjoyGX85QTDz4HTw2aBPfqk4fuMjax5HDo8qCmpV6M1YN8bGvfx5BpYCoDeRlt+A=="],
+    "daisyui": ["daisyui@5.6.2", "", {}, "sha512-Vx67eJXdJi0SQQ4nRJxLUs29HW+HOz8GTF4piu0MotkU2yKrzzSqTMZdQnjAysDm+Anb1jgpY7XeUtUj9ccYyQ=="],
 
     "db0": ["db0@0.3.4", "", { "peerDependencies": { "@electric-sql/pglite": "*", "@libsql/client": "*", "better-sqlite3": "*", "drizzle-orm": "*", "mysql2": "*", "sqlite3": "*" }, "optionalPeers": ["@electric-sql/pglite", "@libsql/client", "better-sqlite3", "drizzle-orm", "mysql2", "sqlite3"] }, "sha512-RiXXi4WaNzPTHEOu8UPQKMooIbqOEyqA1t7Z6MsdxSCeb8iUC9ko3LcmsLmeUt2SM5bctfArZKkRQggKZz7JNw=="],
 

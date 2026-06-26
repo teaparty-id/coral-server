@@ -16,15 +16,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="w-full justify-center items-center z-1000 fixed pt-8 px-8 transition-all delay-300"
-    :class="isAtTop ? 'hidden' : 'flex'"
-  >
+  <div class="flex w-full justify-center items-center z-1000 px-8 transition-all" :class="isAtTop ? '' : 'pt-8'">
     <div
-      class="grid grid-cols-3 min-w-xs lg:min-w-7xl max-w-7xl min-h-18 backdrop-blur-md rounded-4xl bg-base/70 shadow border border-white/20"
+      class="grid grid-cols-3 min-w-xs lg:min-w-7xl max-w-7xl min-h-18 bg-base/70 backdrop-blur-md rounded-4xl border-current/10"
+      :class="isAtTop ? 'hidden' : 'shadow border'"
     >
       <div class="flex w-full h-full justify-start items-center px-8">
-        <NuxtLink class="text-current font-black text-3xl"><Logo class="w-10" /></NuxtLink>
+        <NuxtLink class="text-current font-black text-3xl" to="/"><Logo class="w-10" /></NuxtLink>
       </div>
       <div class="flex w-full h-full justify-center items-center">
         <div class="hidden lg:block"></div>

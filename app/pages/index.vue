@@ -2,8 +2,9 @@
 
 <template>
   <div class="bg-base-100">
-    <Navbar />
-    <LandingHeroSection class="z-9999 relative" />
+    <Navbar class="fixed" />
+
+    <LandingHeroSection />
 
     <LandingTrustSection />
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="py-32 bg-primary text-primary-content">
+  <section class="flex justify-center items-center bg-primary text-primary-content h-screen">
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-5xl font-black">Siap Meninggalkan Sistem Timer Lama?</h2>
 

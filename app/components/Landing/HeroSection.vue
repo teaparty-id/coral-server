@@ -32,8 +32,8 @@
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <NuxtLink to="#download">
-            <button class="btn btn-primary btn-lg">Mulai Sekarang</button>
+          <NuxtLink to="#download" class="aura aura-sm text-current">
+            <button class="btn btn-lg">Mulai Sekarang</button>
           </NuxtLink>
         </div>
 
