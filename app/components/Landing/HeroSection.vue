@@ -4,7 +4,7 @@
       <div class="flex-1 hidden md:block">
         <div class="hover-3d">
           <figure class="rounded-2xl">
-            <NuxtImg src="/img/sample-dark.png"></NuxtImg>
+            <NuxtImg src="/android-chrome-512x512.png"></NuxtImg>
           </figure>
           <div></div>
           <div></div>

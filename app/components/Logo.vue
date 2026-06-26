@@ -1,1 +1,3 @@
-<template><h1 class="font-bold text-accent">>_Coraline__!_</h1></template>
+<template>
+  <NuxtImg src="/android-chrome-512x512.png" class="drop-shadow" />
+</template>

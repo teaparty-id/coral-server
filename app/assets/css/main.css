@@ -1,12 +1,119 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
   themes:
-    night --default,
-    nord,
+    coraline --default,
+    coraline-dark,
     light,
     dark;
 }
 
+@plugin "daisyui/theme" {
+  name: "coraline";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  /* Background */
+  --color-base-100: #f8f9ff;
+  --color-base-200: #eef1ff;
+  --color-base-300: #dfe4ff;
+  --color-base-content: #232c74;
+
+  /* Primary (rambut Coraline) */
+  --color-primary: #232c74;
+  --color-primary-content: #ffffff;
+
+  /* Secondary (bayangan rambut) */
+  --color-secondary: #2d367b;
+  --color-secondary-content: #ffffff;
+
+  /* Accent (warna kulit) */
+  --color-accent: #ba8b6c;
+  --color-accent-content: #ffffff;
+
+  /* Neutral */
+  --color-neutral: #1d2257;
+  --color-neutral-content: #ffffff;
+
+  /* Semantic colors */
+  --color-info: #5b7dff;
+  --color-info-content: #ffffff;
+
+  --color-success: #4d9b65;
+  --color-success-content: #ffffff;
+
+  --color-warning: #d9a441;
+  --color-warning-content: #ffffff;
+
+  --color-error: #d65a5a;
+  --color-error-content: #ffffff;
+
+  /* Shape */
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+@plugin "daisyui/theme" {
+  name: "coraline-dark";
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* Background */
+  --color-base-100: #12141c;
+  --color-base-200: #1a1d28;
+  --color-base-300: #242838;
+  --color-base-content: #f4f6ff;
+
+  /* Coraline blue */
+  --color-primary: #232c74;
+  --color-primary-content: #ffffff;
+
+  /* Brighter blue */
+  --color-secondary: #3c4aa3;
+  --color-secondary-content: #ffffff;
+
+  /* Skin tone */
+  --color-accent: #ba8b6c;
+  --color-accent-content: #ffffff;
+
+  /* Neutral */
+  --color-neutral: #0d1018;
+  --color-neutral-content: #f4f6ff;
+
+  /* Semantic */
+  --color-info: #5d7fff;
+  --color-info-content: #ffffff;
+
+  --color-success: #4ea76d;
+  --color-success-content: #ffffff;
+
+  --color-warning: #d6a24a;
+  --color-warning-content: #12141c;
+
+  --color-error: #d75c5c;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
 :root {
   scroll-behavior: smooth;
+  @apply transition-colors duration-500 ease-in-out;
 }
