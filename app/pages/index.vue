@@ -2,8 +2,6 @@
 
 <template>
   <div class="bg-base-100">
-    <Navbar class="fixed" />
-
     <LandingHeroSection />
 
     <LandingTrustSection />
@@ -16,10 +14,10 @@
 
     <LandingPricingSection />
 
-    <LandingFAQSection />
+    <LandingCTASection />
 
     <LandingInstallSection />
 
-    <LandingCTASection class="z-9999 relative" />
+    <LandingFAQSection />
   </div>
 </template>

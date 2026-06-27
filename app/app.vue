@@ -65,6 +65,8 @@ useHead({
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <Navbar />
+    <NuxtPage class="min-h-screen" />
+    <Footer class="relative z-9000" />
   </div>
 </template>

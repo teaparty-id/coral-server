@@ -8,23 +8,23 @@
       </div>
 
       <div class="grid md:grid-cols-4 gap-6 mt-12">
-        <div class="stat bg-base-100 rounded-box shadow">
-          <div class="stat-value text-primary">24/7</div>
+        <div class="stat bg-base-100 rounded-box shadow text-current">
+          <div class="stat-value">24/7</div>
           <div class="stat-title">Monitoring</div>
         </div>
 
-        <div class="stat bg-base-100 rounded-box shadow">
-          <div class="stat-value text-primary">∞</div>
+        <div class="stat bg-base-100 rounded-box shadow text-current">
+          <div class="stat-value">∞</div>
           <div class="stat-title">Multi Cabang</div>
         </div>
 
-        <div class="stat bg-base-100 rounded-box shadow">
-          <div class="stat-value text-primary">0</div>
+        <div class="stat bg-base-100 rounded-box shadow text-current">
+          <div class="stat-value">0</div>
           <div class="stat-title">Relay Listrik</div>
         </div>
 
-        <div class="stat bg-base-100 rounded-box shadow">
-          <div class="stat-value text-primary">100%</div>
+        <div class="stat bg-base-100 rounded-box shadow text-current">
+          <div class="stat-value">100%</div>
           <div class="stat-title">Terintegrasi</div>
         </div>
       </div>

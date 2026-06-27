@@ -31,7 +31,7 @@ const features = [
   <section class="py-24 bg-base-200">
     <div class="container mx-auto px-6">
       <div class="text-center">
-        <h2 class="text-5xl font-black">Semua Yang Dibutuhkan Rental PS4</h2>
+        <h2 class="text-5xl font-black">Coraline Menjadi Solusi Terbaik</h2>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8 mt-16">

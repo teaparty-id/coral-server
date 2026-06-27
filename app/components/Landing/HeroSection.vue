@@ -16,7 +16,7 @@ function typedText(text: string) {
 </script>
 
 <template>
-  <section class="hero min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200">
+  <section class="hero min-h-screen bg-linear-to-t from-base-200 to-base-100">
     <div class="hero-content max-w-7xl flex-col lg:flex-row-reverse gap-16">
       <div class="flex-1 hidden md:block">
         <div class="hover-3d">

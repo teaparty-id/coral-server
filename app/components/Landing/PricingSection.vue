@@ -48,7 +48,7 @@ const plans = [
 </script>
 
 <template>
-  <section class="py-24">
+  <section class="py-24 bg-base-200">
     <div class="container mx-auto px-6 max-w-7xl">
       <div class="text-center mb-16">
         <h2 class="text-5xl font-black">Harga yang Sesuai untuk Semua Rental</h2>
@@ -58,7 +58,11 @@ const plans = [
 
       <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 transition-all">
         <div v-for="plan in plans" :class="plan.featured && 'aura aura-rainbow'" class="hover:scale-105 transition-all">
-          <div :key="plan.name" class="card bg-base-200 shadow-xl h-full">
+          <div
+            :key="plan.name"
+            class="card bg-base-200 shadow-xl h-full"
+            :class="!plan.featured && 'border border-current/10'"
+          >
             <div class="card-body">
               <div v-if="plan.featured" class="badge badge-primary badge-lg w-fit">Paling Populer</div>
 

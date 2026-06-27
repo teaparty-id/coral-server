@@ -10,8 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@dmncodes/vue-typing": "^1.0.5",
     "@dotenvx/dotenvx": "^1.71.3",
     "@libsql/client": "^0.17.3",
+    "@nuxt/icon": "2.2.4",
     "@nuxt/image": "2.0.0",
     "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^25.9.3",
@@ -21,7 +23,6 @@
     "nuxt": "^4.4.8",
     "tailwindcss": "^4.3.1",
     "vue": "^3.5.35",
-    "vue-router": "^5.1.0",
-    "@dmncodes/vue-typing": "^1.0.5"
+    "vue-router": "^5.1.0"
   }
 }
