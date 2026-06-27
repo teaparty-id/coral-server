@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import VueTyping from "@dmncodes/vue-typing";
+
+const typingTextList = ref(["Rental PS4", "Rental PS3", "Rental PS5", "Console"]);
+const typingLoop = ref(true);
+const typingCaret = ref("_");
+
+function typedText(text: string) {
+  if (text == typingTextList.value[typingTextList.value.length - 1]) {
+    typingLoop.value = false;
+  } else {
+    typingLoop.value = true;
+    typingCaret.value = "_";
+  }
+}
+</script>
+
 <template>
   <section class="hero min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200">
     <div class="hero-content max-w-7xl flex-col lg:flex-row-reverse gap-16">
@@ -21,8 +38,21 @@
         <div class="badge badge-primary badge-lg mb-5">Sistem Billing PS4 Generasi Baru</div>
 
         <h1 class="text-5xl lg:text-7xl font-black leading-tight">
-          Kendalikan
-          <span class="text-primary"> Seluruh Rental PS4 </span>
+          Kendalikan Seluruh
+          <span>
+            <VueTyping
+              :sentences="typingTextList"
+              :minTypeSpeed="50"
+              :maxTypeSpeed="150"
+              :eraseSpeed="100"
+              :eraseDelay="2000"
+              :writeDelay="0"
+              :caret="typingCaret"
+              :loop="typingLoop"
+              @sentence:typed="typedText"
+            />
+          </span>
+          <!-- <span class="text-primary"> Seluruh Rental PS4 </span> -->
           Dari Satu Dashboard
         </h1>
 
@@ -48,3 +78,20 @@
     </div>
   </section>
 </template>
+
+<style>
+.dmn-typing span.caret {
+  color: inherit;
+  animation: blink 1s infinite;
+}
+
+.dmn-typing span.typing {
+  animation: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+</style>

@@ -14,6 +14,8 @@
 
     <LandingComparisonSection />
 
+    <LandingPricingSection />
+
     <LandingFAQSection />
 
     <LandingInstallSection />
