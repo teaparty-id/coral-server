@@ -5,6 +5,7 @@
     "": {
       "name": "coral-server",
       "dependencies": {
+        "@dmncodes/vue-typing": "^1.0.5",
         "@dotenvx/dotenvx": "^1.71.3",
         "@libsql/client": "^0.17.3",
         "@nuxt/image": "2.0.0",
@@ -82,6 +83,8 @@
     "@cloudflare/kv-asset-handler": ["@cloudflare/kv-asset-handler@0.4.2", "", {}, "sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ=="],
 
     "@colordx/core": ["@colordx/core@5.4.3", "", {}, "sha512-kIxYSfA5T8HXjav55UaaH/o/cKivF6jCCGIb8eqtcsfI46wsvlSiT8jMDyrl779qLec3c2c2oHBZo4oAhvbjrQ=="],
+
+    "@dmncodes/vue-typing": ["@dmncodes/vue-typing@1.0.5", "", { "peerDependencies": { "vue": "^3" } }, "sha512-lleo7KPu2MxfMVNGjcNZb7a3sIZrwLpy1nbQ+hOPcL08GmWqW19SRNlXY2tA9HoScyorRrssXpNb0mX4rFvi0Q=="],
 
     "@dotenvx/dotenvx": ["@dotenvx/dotenvx@1.71.3", "", { "dependencies": { "commander": "^11.1.0", "dotenv": "^17.2.1", "eciesjs": "^0.4.10", "enquirer": "^2.4.1", "execa": "^5.1.1", "fdir": "^6.2.0", "ignore": "^5.3.0", "object-treeify": "1.1.33", "picomatch": "^4.0.4", "which": "^4.0.0", "yocto-spinner": "^1.1.0" }, "bin": { "dotenvx": "src/cli/dotenvx.js" } }, "sha512-WSmox5aD+XxJEUEOTk7gKLpd5+Iz9Nik89Zpbu5DijMln6LsFiv3xpNKBMc/b9sSkUlKvAblzrhik2TqKFE7NA=="],
 
