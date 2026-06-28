@@ -1,0 +1,3 @@
+[submodule "submodule/coraline"]
+	path = submodule/coraline
+	url = https://github.com/teaparty-id/coraline

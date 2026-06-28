@@ -1,16 +1,23 @@
 <script setup lang="ts">
+const authModal = useAuthModal();
+const { loggedIn, user } = useUserSession();
 const plans = [
   {
     name: "Gratis",
+    level: "free",
     price: "Rp0",
     period: "/selamanya",
     description: "Coba Coraline tanpa biaya.",
     button: "Mulai Gratis",
     buttonClass: "btn-outline",
     features: ["2 perangkat", "Timer otomatis", "Monitoring dasar", "Laporan harian", "Komunitas support"],
+    act: () => {
+      authModal.open("register");
+    },
   },
   {
     name: "Starter",
+    level: "silver",
     price: "Rp49.000",
     period: "/bulan",
     description: "Untuk rental kecil yang mulai berkembang.",
@@ -24,9 +31,11 @@ const plans = [
       "Laporan transaksi",
       "Update gratis",
     ],
+    act: () => {},
   },
   {
     name: "Pro",
+    level: "gold",
     price: "Rp99.000",
     period: "/bulan",
     featured: true,
@@ -34,15 +43,18 @@ const plans = [
     button: "Mulai Sekarang",
     buttonClass: "btn-primary",
     features: ["Hingga 20 perangkat", "Laporan tahunan", "Statistik lengkap", "Prioritas support"],
+    act: () => {},
   },
   {
     name: "Enterprise",
+    level: "platinum",
     price: "Custom",
     period: "",
     description: "Solusi untuk rental besar dan multi cabang.",
     button: "Hubungi Kami",
     buttonClass: "btn-outline",
     features: ["Perangkat tanpa batas", "Multi cabang", "Dashboard pusat", "API & integrasi", "Support prioritas"],
+    act: () => {},
   },
 ];
 </script>
@@ -91,7 +103,12 @@ const plans = [
                 </li>
               </ul>
 
-              <button class="btn w-full mt-8" :class="plan.buttonClass">
+              <button
+                class="btn w-full mt-8"
+                :class="plan.buttonClass"
+                :disabled="loggedIn && user?.level == plan.level"
+                @click="plan.act"
+              >
                 {{ plan.button }}
               </button>
             </div>

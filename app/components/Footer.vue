@@ -5,8 +5,12 @@ const navList = ref([
     to: "/",
   },
   {
-    name: "Privacy and Security",
+    name: "Terms and Condition",
     to: "/terms",
+  },
+  {
+    name: "Privacy Policy",
+    to: "/privacy",
   },
   {
     name: "Refund Policy",

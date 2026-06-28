@@ -1,3 +1,1 @@
-export * from "./schema/devices";
-export * from "./schema/sessions";
-export * from "./schema/users";
+export * from "~~/submodule/coraline/shared/database";

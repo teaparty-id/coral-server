@@ -60,6 +60,12 @@ useHead({
     },
   ],
 });
+
+import { themeChange } from "theme-change";
+
+onMounted(() => {
+  themeChange(false);
+});
 </script>
 
 <template>
@@ -69,4 +75,6 @@ useHead({
     <NuxtPage class="min-h-screen" />
     <Footer class="relative z-9000" />
   </div>
+
+  <AuthModal />
 </template>
