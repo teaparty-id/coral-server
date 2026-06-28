@@ -15,5 +15,9 @@
     },
   },
   "name": "coraline",
-  "vars": {},
+  "vars": {
+    "NUXT_DATABASE_URL": "libsql://coraline-teaparty-id.aws-ap-northeast-1.turso.io",
+    "NUXT_DATABASE_TOKEN": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODA4MzU3MzEsImlkIjoiMDE5ZWEyMTQtMTQwMS03YjM0LTg4MWQtNWVjN2Q5OGYyMDBiIiwicmlkIjoiMDc1YTAyNDktZWIxMS00YzU0LThiOTMtMGI1Nzc2ODI4Mjk4In0.hFd0zo_1DFpJzNVRCDKwotjGzdkzuC1UouzL1igxmNwemTivfD20Ejr_TM404v6zLAGurGlkpLoLPS3Bpl0QCQ",
+    "NUXT_SESSION_PASSWORD": "da6949cb89784423b1497e9fa3833bfa",
+  },
 }
