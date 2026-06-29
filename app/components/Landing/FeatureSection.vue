@@ -1,49 +1,79 @@
 <script setup lang="ts">
 const features = [
   {
-    title: "Billing Otomatis",
-    desc: "Hitung waktu bermain dan transaksi secara otomatis.",
+    icon: "material-symbols:electric-bolt-rounded",
+    title: "Tanpa Modul Tambahan",
+    desc: "Coraline dapat digunakan tanpa modul pemutus daya atau HDMI.",
   },
   {
-    title: "Monitoring Konsol",
-    desc: "Pantau seluruh PS4 secara real-time.",
+    icon: "material-symbols:schedule-rounded",
+    title: "Manajemen Waktu Otomatis",
+    desc: "Atur durasi bermain, waktu tambahan, dan penghentian sesi secara otomatis.",
   },
   {
-    title: "Multi Cabang",
-    desc: "Kelola beberapa rental dari satu akun.",
+    icon: "material-symbols:devices-rounded",
+    title: "Multi Perangkat",
+    desc: "Kelola banyak konsol atau perangkat sekaligus dalam satu dashboard.",
   },
   {
-    title: "Laporan Pendapatan",
-    desc: "Analisis pemasukan harian hingga bulanan.",
+    icon: "material-symbols:cloud-sync-rounded",
+    title: "Sinkronisasi Real-time",
+    desc: "Perubahan status perangkat dan transaksi diperbarui secara langsung.",
   },
   {
-    title: "Remote Management",
-    desc: "Akses dari mana saja.",
+    icon: "material-symbols:receipt-long-rounded",
+    title: "Riwayat Transaksi Lengkap",
+    desc: "Semua transaksi, topup, dan aktivitas pelanggan tersimpan dengan rapi dan mudah ditelusuri.",
   },
   {
-    title: "Tanpa Perangkat Tambahan",
-    desc: "Tidak perlu relay, timer listrik, atau HDMI switch.",
+    icon: "material-symbols:shield-rounded",
+    title: "Keamanan Data",
+    desc: "Data pengguna dan konfigurasi sistem disimpan dengan aman menggunakan autentikasi modern.",
+  },
+  {
+    icon: "material-symbols:phone-android-rounded",
+    title: "Responsif di Semua Perangkat",
+    desc: "Antarmuka Coraline nyaman digunakan melalui komputer, tablet, maupun smartphone.",
+  },
+  {
+    icon: "material-symbols:palette",
+    title: "Antarmuka Modern",
+    desc: "Desain yang bersih dan intuitif membuat pengelolaan rental menjadi lebih mudah dan cepat.",
   },
 ];
 </script>
 
 <template>
-  <section class="py-24 bg-base-200">
-    <div class="container mx-auto px-6">
-      <div class="text-center">
-        <h2 class="text-5xl font-black">Coraline Menjadi Solusi Terbaik</h2>
+  <section class="py-24">
+    <div class="lg:container mx-auto lg:px-6 max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-black">Fitur Unggulan Coraline</h2>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-8 mt-16">
-        <div v-for="feature in features" :key="feature.title" class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <h3 class="card-title text-xl">
-              {{ feature.title }}
-            </h3>
-
-            <p>
-              {{ feature.desc }}
-            </p>
+      <div class="bg-primary lg:shadow lg:shadow-primary flex flex-col gap-12 p-12 rounded-2xl text-white">
+        <div><h2 class="text-3xl font-bold">Semua Yang Dibutuhkan Untuk Bisnis Rental Professional</h2></div>
+        <div class="flex flex-wrap gap-6">
+          <div
+            v-for="feature in features"
+            class="group card card-border min-h-46 border-secondary bg-linear-to-br from-secondary to-primary max-w-md overflow-hidden transition-all hover:scale-105"
+          >
+            <figure
+              class="flex justify-center items-center pl-6 absolute rotate-12 right-0 bottom-0 transition-all group-hover:rotate-5 group-hover:scale-120"
+            >
+              <Icon
+                :name="feature.icon"
+                size="168"
+                class="text-secondary/70 group-hover:text-secondary transition-all"
+              ></Icon>
+            </figure>
+            <div class="card-body flex flex-col z-10">
+              <h2 class="text-xl font-medium">
+                {{ feature.title }}
+              </h2>
+              <div>
+                {{ feature.desc }}
+              </div>
+            </div>
           </div>
         </div>
       </div>

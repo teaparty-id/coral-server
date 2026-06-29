@@ -6,11 +6,7 @@
 
     <LandingTrustSection />
 
-    <LandingPainSection />
-
     <LandingFeatureSection />
-
-    <LandingComparisonSection />
 
     <LandingPricingSection />
 
