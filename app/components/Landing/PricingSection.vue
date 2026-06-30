@@ -3,6 +3,11 @@ const authModal = useAuthModal();
 const { loggedIn, user } = useUserSession();
 
 const plans = ref<any>([]);
+const expanded = ref(false);
+
+function toggleExpanded() {
+  expanded.value = !expanded.value;
+}
 
 async function purchase(productCode: string) {
   if (!user.value) {
@@ -60,10 +65,9 @@ onMounted(async () => {
             :key="plan.name"
             class="card bg-base-200 shadow-xl h-full"
             :class="!plan.featured && 'border border-current/10'"
+            @click="toggleExpanded()"
           >
             <div class="card-body">
-              <div v-if="plan.featured" class="badge badge-primary badge-lg w-fit">Paling Populer</div>
-
               <div>
                 <h3 class="card-title">
                   {{ plan.name }}
@@ -85,7 +89,10 @@ onMounted(async () => {
                 </div>
               </div>
 
-              <ul class="space-y-3 flex-1">
+              <ul
+                class="space-y-3 flex-1 overflow-hidden transition-all duration-200"
+                :class="expanded ? 'max-h-250' : 'max-h-46'"
+              >
                 <li v-for="feature in plan.features" :key="feature" class="flex items-center gap-3">
                   <div class="badge badge-success badge-sm"></div>
                   <span>{{
@@ -93,6 +100,16 @@ onMounted(async () => {
                   }}</span>
                 </li>
               </ul>
+
+              <button class="btn btn-ghost btn-sm w-full mb-2" @click.stop="toggleExpanded()">
+                {{ expanded ? "Sembunyikan Fitur" : "Lihat Semua Fitur" }}
+
+                <Icon
+                  name="heroicons:chevron-down"
+                  class="transition-transform duration-300"
+                  :class="{ 'rotate-180': expanded }"
+                />
+              </button>
 
               <button
                 class="btn w-full mt-8"
