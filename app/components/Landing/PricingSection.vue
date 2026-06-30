@@ -3,7 +3,7 @@ const authModal = useAuthModal();
 const { loggedIn, user } = useUserSession();
 
 const plans = ref<any>([]);
-const expanded = ref(false);
+const expanded = ref(true);
 
 function toggleExpanded() {
   expanded.value = !expanded.value;
@@ -65,7 +65,6 @@ onMounted(async () => {
             :key="plan.name"
             class="card bg-base-200 shadow-xl h-full"
             :class="!plan.featured && 'border border-current/10'"
-            @click="toggleExpanded()"
           >
             <div class="card-body">
               <div>
@@ -101,7 +100,7 @@ onMounted(async () => {
                 </li>
               </ul>
 
-              <button class="btn btn-ghost btn-sm w-full mb-2" @click.stop="toggleExpanded()">
+              <!-- <button class="btn btn-ghost btn-sm w-full mb-2" @click.stop="toggleExpanded()">
                 {{ expanded ? "Sembunyikan Fitur" : "Lihat Semua Fitur" }}
 
                 <Icon
@@ -109,7 +108,7 @@ onMounted(async () => {
                   class="transition-transform duration-300"
                   :class="{ 'rotate-180': expanded }"
                 />
-              </button>
+              </button> -->
 
               <button
                 class="btn w-full mt-8"
