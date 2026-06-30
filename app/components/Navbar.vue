@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const authModal = useAuthModal();
-const { loggedIn, clear } = useUserSession();
+const { loggedIn, clear, user } = useUserSession();
 </script>
 
 <template>

@@ -3,8 +3,8 @@ declare module "#auth-utils" {
   interface User {
     name: string;
     email: string;
-    maxDevice: number;
-    level: string;
+    maxDevice?: number;
+    plan?: string;
   }
 
   interface UserSession {

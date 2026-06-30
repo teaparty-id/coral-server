@@ -153,7 +153,9 @@ async function doRegister() {
 
       <!-- Close -->
       <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3" @click="close">✕</button>
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3" @click="close">
+          <Icon name="material-symbols:cancel" size="24"></Icon>
+        </button>
       </form>
     </div>
 

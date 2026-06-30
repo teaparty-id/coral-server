@@ -8,7 +8,6 @@ const schema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
-  const errMessages: string[] = [];
   const body = await readValidatedBody(event, schema.parse);
   const user = await UserRepository.findByUsername(body.username);
 
@@ -18,8 +17,6 @@ export default defineEventHandler(async (event) => {
         user: {
           name: user.name,
           email: user.email,
-          maxDevice: user.maxDevice,
-          level: user.level,
         },
       });
     } else {

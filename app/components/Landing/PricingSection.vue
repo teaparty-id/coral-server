@@ -1,62 +1,48 @@
 <script setup lang="ts">
 const authModal = useAuthModal();
 const { loggedIn, user } = useUserSession();
-const plans = [
-  {
-    name: "Gratis",
-    level: "free",
-    price: "Rp0",
-    period: "/selamanya",
-    description: "Coba Coraline tanpa biaya.",
-    button: "Mulai Gratis",
-    buttonClass: "btn-outline",
-    features: ["2 perangkat", "Timer otomatis", "Monitoring dasar", "Laporan harian", "Komunitas support"],
-    act: () => {
-      authModal.open("register");
-    },
-  },
-  {
-    name: "Starter",
-    level: "starter",
-    price: "Rp49.000",
-    period: "/bulan",
-    description: "Untuk rental kecil yang mulai berkembang.",
-    button: "Pilih Paket",
-    buttonClass: "btn-outline",
-    features: [
-      "Semua yang ada di Free tier",
-      "Hingga 5 perangkat",
-      "Monitoring dari mana saja",
-      "Fitur FnB",
-      "Laporan bulanan",
-      "Laporan transaksi",
-    ],
-    act: () => {},
-  },
-  {
-    name: "Pro",
-    level: "pro",
-    price: "Rp99.000",
-    period: "/bulan",
-    featured: true,
-    description: "Pilihan paling populer untuk rental PlayStation.",
-    button: "Mulai Sekarang",
-    buttonClass: "btn-primary",
-    features: ["Semua yang ada di Starter tier", "Hingga 20 perangkat", "Laporan tahunan", "Statistik lengkap"],
-    act: () => {},
-  },
-  {
-    name: "Enterprise",
-    level: "enterprise",
-    price: "Custom",
-    period: "",
-    description: "Solusi untuk rental besar dan multi cabang.",
-    button: "Hubungi Kami",
-    buttonClass: "btn-outline",
-    features: ["Semua yang ada di Pro tier", "Perangkat tanpa batas", "Support Prioritas"],
-    act: () => {},
-  },
-];
+
+const plans = ref<any>([]);
+
+async function purchase(productCode: string) {
+  if (!user.value) {
+    return authModal.open("login");
+  }
+
+  alert("Kamu beli " + productCode);
+}
+
+async function fetchPlans() {
+  const res = await $fetch("/api/plan/list");
+  if (res.success) {
+    for (let plan of res.data as any) {
+      plan.button = "Pilih Paket";
+      plan.buttonClass = "btn-outline";
+
+      if (plan.code == "free") {
+      }
+      if (plan.code == "pro") {
+        plan.featured = true;
+        plan.buttonClass = "btn-primary";
+      }
+      if (plan.code == "enterprise") {
+        plan.button = "Hubungi Kami";
+        plan.price = {
+          currency: "",
+          price: "Custom",
+          interval: "monthly",
+        };
+      }
+    }
+    plans.value = res.data;
+  } else {
+    // Error alert
+  }
+}
+
+onMounted(async () => {
+  await fetchPlans();
+});
 </script>
 
 <template>
@@ -68,7 +54,7 @@ const plans = [
         <p class="opacity-70 mt-4">Mulai gratis dan tingkatkan paket kapan saja sesuai kebutuhan.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 transition-all">
+      <div v-if="plans.length > 0" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 transition-all">
         <div v-for="plan in plans" :class="plan.featured && 'aura aura-rainbow'" class="hover:scale-105 transition-all">
           <div
             :key="plan.name"
@@ -78,36 +64,41 @@ const plans = [
             <div class="card-body">
               <div v-if="plan.featured" class="badge badge-primary badge-lg w-fit">Paling Populer</div>
 
-              <h3 class="text-2xl font-bold mt-2">
-                {{ plan.name }}
-              </h3>
+              <div>
+                <h3 class="card-title">
+                  {{ plan.name }}
+                </h3>
 
-              <p class="opacity-70 min-h-12">
-                {{ plan.description }}
-              </p>
+                <p class="opacity-70 min-h-12">
+                  {{ plan.description }}
+                </p>
 
-              <div class="my-6">
-                <span class="text-4xl font-black">
-                  {{ plan.price }}
-                </span>
+                <div class="my-6 flex flex-col">
+                  <span class="text-4xl font-black">
+                    {{ plan.price.currency + " " + plan.price.price }}
+                  </span>
 
-                <span class="opacity-60">
-                  {{ plan.period }}
-                </span>
+                  <span class="opacity-60">
+                    /
+                    {{ plan.price.interval }}
+                  </span>
+                </div>
               </div>
 
               <ul class="space-y-3 flex-1">
                 <li v-for="feature in plan.features" :key="feature" class="flex items-center gap-3">
                   <div class="badge badge-success badge-sm"></div>
-                  <span>{{ feature }}</span>
+                  <span>{{
+                    (feature.value != "true" ? (feature.value as string).toUpperCase() + " " : "") + feature.name
+                  }}</span>
                 </li>
               </ul>
 
               <button
                 class="btn w-full mt-8"
                 :class="plan.buttonClass"
-                :disabled="loggedIn && user?.level == plan.level"
-                @click="plan.act"
+                :disabled="loggedIn && user?.plan == plan.code"
+                @click="purchase(plan.code)"
               >
                 {{ plan.button }}
               </button>
@@ -115,6 +106,7 @@ const plans = [
           </div>
         </div>
       </div>
+      <div v-else class="skeleton w-full min-h-146"></div>
     </div>
   </section>
 </template>
