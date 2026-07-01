@@ -11,11 +11,11 @@ function toggleExpanded() {
 }
 
 async function purchase(productId: string) {
-  purchaseLoading.value = true;
   if (!user.value) {
     return authModal.open("login");
   }
 
+  purchaseLoading.value = true;
   $fetch("/api/payment", {
     method: "POST",
     body: JSON.stringify({
