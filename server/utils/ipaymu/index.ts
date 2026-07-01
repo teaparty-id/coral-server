@@ -31,3 +31,12 @@ export async function generateIPaymuSignature({ method, va, apiKey, body = {} }:
 export function generateTimestamp() {
   return dayjs().format("YYYYMMDDhhmmss");
 }
+
+export function phpKsort(obj: any) {
+  return Object.keys(obj)
+    .sort((a, b) => a.localeCompare(b))
+    .reduce((sortedObj: any, key) => {
+      sortedObj[key] = obj[key];
+      return sortedObj;
+    }, {});
+}
