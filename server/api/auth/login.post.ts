@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
       const subs = await SubscriptionRepository.findStatusByUserId(user.id, "active");
       if (subs) {
-        userData.plan = subs.plans?.name;
+        userData.plan = subs.plans?.code;
       }
 
       await setUserSession(event, {
