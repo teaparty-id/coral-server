@@ -1,7 +1,8 @@
-import { z } from "zod";
-import PlanRepository from "~~/submodule/coraline/app/utils/database/repositories/plan.repository";
 import ky from "ky";
+import { z } from "zod";
 import { generateIPaymuSeed } from "~~/server/utils/ipaymu";
+import PlanRepository from "~~/submodule/coraline/app/utils/database/repositories/plan.repository";
+import SubscriptionRepository from "~~/submodule/coraline/app/utils/database/repositories/subscription.repository";
 
 const schema = z.object({
   productId: z.string(),
@@ -29,12 +30,12 @@ export default defineEventHandler(async (event) => {
     description: [plan?.plans.description!],
     returnUrl: "https://coraline.biz.id",
     notifyUrl: "https://coraline.biz.id/api/payment/cb/notify",
-    cancelUrl: "https://coraline.biz.id/api/payment/cb/cancel",
-    referenceId: `invoice_${timestamp}_${session.user.id}`,
+    referenceId: `INV${timestamp}-${session.user.id}`,
     feeDirection: "BUYER",
     paymentMethod: "qris,va",
     buyerName: session.user.name,
     buyerEmail: session.user.email,
+    expired: 1,
   };
 
   const signature = await generateIPaymuSignature({ apiKey: seed.key, method: "POST", va: seed.va, body: formData });
@@ -51,6 +52,22 @@ export default defineEventHandler(async (event) => {
       redirect: "follow",
     })
     .json();
+
+  const anyRes = res as any;
+  if (anyRes.Success) {
+    await SubscriptionRepository.purchase({
+      userId: session.user.id!,
+      planId: plan?.plans.id!,
+      priceId: plan?.plan_prices?.id!,
+      externalId: anyRes.Data.SessionID,
+      amount: plan?.plan_prices?.price!,
+    });
+  } else {
+    throw createError({
+      status: anyRes.Status || 500,
+      message: anyRes.Message || "Unknown error occured",
+    });
+  }
 
   return {
     success: true,

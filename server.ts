@@ -32,14 +32,15 @@ const data = {
 };
 
 // ksort
-const sortedData: Record<string, any> = {};
-for (const key of Object.keys(data).sort()) {
-  sortedData[key] = data[key as keyof typeof data];
-}
+const sortedData: Record<string, any> = Object.keys(data)
+  .sort((a, b) => a.localeCompare(b))
+  .reduce((sortedObj: any, key) => {
+    sortedObj[key] = data[key];
+    return sortedObj;
+  }, {});
 
 // Signature dihitung TANPA field signature
-const jsonBody = JSON.stringify(sortedData);
-
+const jsonBody = JSON.stringify(sortedData).replace(/\//g, "\\/");
 const signature = crypto.createHmac("sha256", SECRET_KEY).update(jsonBody).digest("hex");
 
 // Tambahkan signature ke payload yang dikirim
