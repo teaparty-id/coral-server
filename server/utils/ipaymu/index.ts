@@ -1,4 +1,3 @@
-import crypto from "node:crypto";
 import dayjs from "dayjs";
 import { sha256, hmacSHA256 } from "../cipher";
 
@@ -19,7 +18,7 @@ export function generateIPaymuSeed() {
 
 export async function generateIPaymuSignature({ method, va, apiKey, body = {} }: GenerateSignatureOptions) {
   const bodyEncrypt = await sha256(JSON.stringify(body));
-  const stringToSign = "POST:" + va + ":" + bodyEncrypt + ":" + apiKey;
+  const stringToSign = method + ":" + va + ":" + bodyEncrypt + ":" + apiKey;
   const signature = await hmacSHA256(apiKey, stringToSign);
 
   return {
