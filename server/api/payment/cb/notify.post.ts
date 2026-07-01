@@ -1,5 +1,5 @@
 import PlanRepository from "~~/submodule/coraline/app/utils/database/repositories/plan.repository";
-import { generateIPaymuSeed } from "~~/server/utils/ipaymu";
+import { generateIPaymuSeed, phpKsort } from "~~/server/utils/ipaymu";
 import { hmacSHA256 } from "../../../utils/cipher";
 
 export default defineEventHandler(async (event) => {
@@ -16,13 +16,11 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   delete body.signature;
 
-  const sortedKeys = Object.keys(body).sort();
-  const sortedData: any = {};
-  for (const key of sortedKeys) {
-    sortedData[key] = body[key];
-  }
+  const sortedData: any = phpKsort(body);
+  // https://ipaymu.github.io/docs-ipaymu-api-v2/id/docs/callback#contoh-kode-implementasi
 
-  const signatureData = await hmacSHA256(seed.va, JSON.stringify(sortedData));
+  const stringData = JSON.stringify(sortedData).replace(/\//g, "\\/");
+  const signatureData = await hmacSHA256(seed.va, stringData);
   if (signature != signatureData) {
     throw createError({
       status: 401,
@@ -38,6 +36,5 @@ export default defineEventHandler(async (event) => {
 
   return {
     success: true,
-    data: sortedData,
   };
 });
