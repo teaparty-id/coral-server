@@ -27,6 +27,11 @@ export default defineEventHandler(async (event) => {
     throw createError({
       status: 401,
       statusMessage: "signature not valid",
+      data: {
+        ...sortedData,
+        signature,
+        signatureData,
+      },
     });
   }
 
