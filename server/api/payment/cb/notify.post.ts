@@ -1,6 +1,4 @@
-import PlanRepository from "~~/submodule/coraline/app/utils/database/repositories/plan.repository";
 import SubscriptionRepository from "~~/submodule/coraline/app/utils/database/repositories/subscription.repository";
-import SubscriptionTransactionRepository from "~~/submodule/coraline/app/utils/database/repositories/subscription-transaction.repository";
 import { generateIPaymuSeed, phpKsort } from "~~/server/utils/ipaymu";
 import { hmacSHA256 } from "../../../utils/cipher";
 
@@ -45,5 +43,6 @@ export default defineEventHandler(async (event) => {
 
   return {
     success: true,
+    data: body.status as string,
   };
 });

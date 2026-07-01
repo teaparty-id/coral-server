@@ -12,6 +12,15 @@ export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, schema.parse);
   const session = await requireUserSession(event);
 
+  // Check active subscription
+  const subs = await SubscriptionRepository.findStatusByUserId(session.user.id, "active");
+  if (subs) {
+    throw createError({
+      status: 403,
+      statusMessage: "currently subscription still active",
+    });
+  }
+
   const product = await PlanRepository.getJoinPriceById(body.productId);
   if (product.length <= 0) {
     throw createError({

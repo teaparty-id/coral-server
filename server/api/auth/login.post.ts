@@ -1,6 +1,8 @@
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import UserRepository from "~~/submodule/coraline/app/utils/database/repositories/user.repository";
+import SubscriptionRepository from "~~/submodule/coraline/app/utils/database/repositories/subscription.repository";
+import { User } from "#auth-utils";
 
 const schema = z.object({
   username: z.string(),
@@ -13,12 +15,19 @@ export default defineEventHandler(async (event) => {
 
   if (user) {
     if (await bcrypt.compare(body.password, user.passwordHash)) {
+      let userData: User = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      };
+
+      const subs = await SubscriptionRepository.findStatusByUserId(user.id, "active");
+      if (subs) {
+        userData.plan = subs.plans?.name;
+      }
+
       await setUserSession(event, {
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-        },
+        user: userData,
       });
     } else {
       throw createError({
