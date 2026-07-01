@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
   if (!signature) {
     throw createError({
       status: 401,
+      statusMessage: "signature is required",
     });
   }
 
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
   if (signature != signatureData) {
     throw createError({
       status: 401,
+      statusMessage: "signature not valid",
     });
   }
 
