@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const purchase = await SubscriptionRepository.validatePurchase(body.sid);
+  const purchase = await SubscriptionRepository.validatePurchase(body);
   if (!purchase) {
     throw createError({
       status: 404,
