@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     if (await bcrypt.compare(body.password, user.passwordHash)) {
       await setUserSession(event, {
         user: {
+          id: user.id,
           name: user.name,
           email: user.email,
         },

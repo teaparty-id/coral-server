@@ -19,6 +19,7 @@
     "@types/node": "^25.9.3",
     "bcryptjs": "^3.0.3",
     "daisyui": "^5.6.2",
+    "dayjs": "^1.11.21",
     "drizzle-kit": "^1.0.0-rc.4",
     "drizzle-orm": "^1.0.0-rc.4",
     "ipaymu-nodejs-api": "^1.0.1",

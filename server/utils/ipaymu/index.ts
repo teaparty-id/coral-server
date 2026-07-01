@@ -1,4 +1,6 @@
 import crypto from "node:crypto";
+import dayjs from "dayjs";
+import { sha256, hmacSHA256 } from "../cipher";
 
 interface GenerateSignatureOptions {
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -7,28 +9,26 @@ interface GenerateSignatureOptions {
   body?: Record<string, any>;
 }
 
-export function generateIPaymuSignature({ method, va, apiKey, body = {} }: GenerateSignatureOptions) {
-  const requestBody = JSON.stringify(body);
-  const bodyHash = crypto.createHash("sha256").update(requestBody).digest("hex").toLowerCase();
-  const stringToSign = `${method.toUpperCase()}:${va}:${bodyHash}:${apiKey}`;
-  const signature = crypto.createHmac("sha256", apiKey).update(stringToSign).digest("hex");
+export function generateIPaymuSeed() {
+  return {
+    va: process.env.IPAYMU_VA!,
+    key: process.env.IPAYMU_KEY!,
+    date: new Date(),
+  };
+}
+
+export async function generateIPaymuSignature({ method, va, apiKey, body = {} }: GenerateSignatureOptions) {
+  const bodyEncrypt = await sha256(JSON.stringify(body));
+  const stringToSign = "POST:" + va + ":" + bodyEncrypt + ":" + apiKey;
+  const signature = await hmacSHA256(apiKey, stringToSign);
 
   return {
     signature,
     stringToSign,
-    bodyHash,
+    bodyEncrypt,
   };
 }
 
-export function generateTimestamp(date: Date) {
-  const pad = (n: number) => n.toString().padStart(2, "0");
-
-  return (
-    date.getFullYear() +
-    pad(date.getMonth() + 1) +
-    pad(date.getDate()) +
-    pad(date.getHours()) +
-    pad(date.getMinutes()) +
-    pad(date.getSeconds())
-  );
+export function generateTimestamp() {
+  return dayjs().format("YYYYMMDDhhmmss");
 }

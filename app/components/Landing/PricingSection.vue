@@ -2,6 +2,7 @@
 const authModal = useAuthModal();
 const { loggedIn, user } = useUserSession();
 
+const purchaseLoading = ref(false);
 const plans = ref<any>([]);
 const expanded = ref(true);
 
@@ -9,12 +10,29 @@ function toggleExpanded() {
   expanded.value = !expanded.value;
 }
 
-async function purchase(productCode: string) {
+async function purchase(productId: string) {
+  purchaseLoading.value = true;
   if (!user.value) {
     return authModal.open("login");
   }
 
-  alert("Kamu beli " + productCode);
+  $fetch("/api/payment", {
+    method: "POST",
+    body: JSON.stringify({
+      productId: productId,
+    }),
+  })
+    .then(async ({ success, data }) => {
+      const d = data as any;
+      if (success && d.Success) {
+        await navigateTo(d.Data.Url, {
+          external: true,
+        });
+      }
+    })
+    .finally(() => {
+      purchaseLoading.value = false;
+    });
 }
 
 async function fetchPlans() {
@@ -113,10 +131,12 @@ onMounted(async () => {
               <button
                 class="btn w-full mt-8"
                 :class="plan.buttonClass"
-                :disabled="loggedIn && user?.plan == plan.code"
-                @click="purchase(plan.code)"
+                :disabled="(loggedIn && user?.plan == plan.code) || purchaseLoading"
+                @click="purchase(plan.id)"
               >
-                {{ plan.button }}
+                <div :class="purchaseLoading && 'loading'">
+                  {{ plan.button }}
+                </div>
               </button>
             </div>
           </div>
