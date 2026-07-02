@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { push } from "notivue";
+
 const authModal = useAuthModal();
 const { loggedIn, clear, user } = useUserSession();
+
+if (user.value) {
+  push.success({
+    title: `Welcome ${user.value.name}`,
+    message: user.value.plan ? `Your plan is ${user.value.plan}` : "You have no plan",
+  });
+}
 </script>
 
 <template>
-  <div class="flex w-full justify-center items-center z-1000 transition-all top-0 sticky">
+  <div class="flex w-full justify-center items-center z-80 transition-all top-0 sticky">
     <div class="flex justify-center w-full bg-base-100">
       <div class="grid grid-cols-3 min-w-xs lg:min-w-7xl max-w-7xl min-h-18">
         <div class="flex w-full h-full justify-start items-center px-8">

@@ -21,6 +21,7 @@
         "drizzle-orm": "^1.0.0-rc.4",
         "ipaymu-nodejs-api": "^1.0.1",
         "ky": "^2.0.2",
+        "notivue": "^2.4.5",
         "nuxt": "^4.4.8",
         "nuxt-auth-utils": "0.5.29",
         "pinia": "^3.0.4",
@@ -1323,6 +1324,8 @@
     "nopt": ["nopt@8.1.0", "", { "dependencies": { "abbrev": "^3.0.0" }, "bin": { "nopt": "bin/nopt.js" } }, "sha512-ieGu42u/Qsa4TFktmaKEwM6MQH0pOWnaB3htzh0JRtx84+Mebc0cbZYN5bC+6WTZ4+77xrL9Pn5m7CV6VIkV7A=="],
 
     "normalize-path": ["normalize-path@3.0.0", "", {}, "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="],
+
+    "notivue": ["notivue@2.4.5", "", { "peerDependencies": { "@nuxt/kit": ">=3.5.0", "@nuxt/schema": ">=3.5.0", "defu": ">=6" }, "optionalPeers": ["@nuxt/kit", "@nuxt/schema", "defu"] }, "sha512-7yBdaKesUZIwdcQP3nv1oWYyisI2bURkZ+D9KfLgeNqguHUzkQ1WdhGcTj59PBZa8mqa1/K5Mh8YsphSToMKcQ=="],
 
     "npm-run-path": ["npm-run-path@4.0.1", "", { "dependencies": { "path-key": "^3.0.0" } }, "sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw=="],
 

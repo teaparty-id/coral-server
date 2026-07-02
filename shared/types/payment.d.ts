@@ -1,4 +1,5 @@
 export interface PaymentData {
+  SessionId: string;
   TransactionId: number;
   ReferenceId: string;
   Via: string;
@@ -9,4 +10,13 @@ export interface PaymentData {
   Fee: number;
   Total: number;
   Expired: string;
+  PaymentNo: string;
+  FeeDirection: string;
+  QrImage: string;
+  QrTemplate: string;
+  Terminal: string;
+  NNSCode: string;
+  NMID: string;
+  Note: any;
+  Escrow: boolean;
 }

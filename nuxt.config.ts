@@ -10,11 +10,6 @@ export default defineNuxtConfig({
     plugins: [tailwindcss() as any],
   },
 
-  css: ["~/assets/css/main.css"],
-  modules: [
-    "@nuxt/image",
-    "@nuxt/icon",
-    "nuxt-auth-utils",
-    "@pinia/nuxt",
-  ],
+  css: ["~/assets/css/main.css", "notivue/notification.css", "notivue/animations.css"],
+  modules: ["@nuxt/image", "@nuxt/icon", "nuxt-auth-utils", "@pinia/nuxt", "notivue/nuxt"],
 });

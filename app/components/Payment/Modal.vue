@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import QRCode from "qrcode";
 import { usePaymentStore } from "~/stores/usePaymentStore";
+import { push } from "notivue";
+import type { PaymentData } from "~~/shared/types/payment";
 
-const { clear } = useUserSession();
+const { clear, user } = useUserSession();
 const paymentStore = usePaymentStore();
-const PaymentModal = usePaymentModal();
+const paymentModal = usePaymentModal();
 const qrCode = ref("");
 
 onMounted(async () => {
@@ -36,16 +38,25 @@ async function checkStatus() {
     transactionStatus.value = d;
 
     if (transactionStatus.value.Status == 1) {
-      alert("Transaksi berhasil, silahkan login kembali.");
-      await clear();
-      reloadNuxtApp({ force: true });
+      paymentStore.data = {} as PaymentData;
+      paymentModal.close();
+      push.success({
+        title: "Transaksi berhasil",
+        message: "Halaman akan dimuat ulang dalam 5 detik.",
+      });
+
+      setTimeout(async () => {
+        reloadNuxtApp({
+          force: true,
+        });
+      }, 5000);
     }
   }
 }
 </script>
 
 <template>
-  <dialog class="modal modal-bottom sm:modal-middle" :class="{ 'modal-open': PaymentModal.opened.value }">
+  <dialog class="modal modal-bottom sm:modal-middle" :class="{ 'modal-open': paymentModal.opened.value }">
     <div class="modal-box max-w-md border border-base-300 bg-base-200 p-0 overflow-hidden">
       <!-- Header -->
       <div class="bg-gradient-to-r from-primary to-secondary p-6 text-center text-primary-content">
@@ -125,12 +136,12 @@ async function checkStatus() {
         <button class="btn btn-primary w-full">Saya Sudah Membayar</button>
       </div>
 
-      <button class="btn btn-circle btn-sm btn-ghost absolute right-3 top-3" @click="PaymentModal.close()">
+      <button class="btn btn-circle btn-sm btn-ghost absolute right-3 top-3" @click="paymentModal.close()">
         <Icon name="material-symbols:close-rounded" size="22" />
       </button>
     </div>
 
-    <form method="dialog" class="modal-backdrop" @click="PaymentModal.close()">
+    <form method="dialog" class="modal-backdrop" @click="paymentModal.close()">
       <button>Tutup</button>
     </form>
   </dialog>

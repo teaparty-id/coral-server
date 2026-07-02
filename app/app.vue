@@ -62,6 +62,19 @@ useHead({
 });
 
 import { themeChange } from "theme-change";
+import { Notivue, Notification, NotificationProgress, materialTheme, useNotivue } from "notivue";
+let notivueConfig = useNotivue();
+notivueConfig.update({
+  position: "top-right",
+  limit: 4,
+  enqueue: true,
+  avoidDuplicates: true,
+  notifications: {
+    global: {
+      duration: 5000,
+    },
+  },
+});
 
 onMounted(() => {
   themeChange(false);
@@ -69,12 +82,19 @@ onMounted(() => {
 </script>
 
 <template>
+  <Navbar />
+
   <div>
     <NuxtRouteAnnouncer />
-    <Navbar />
     <NuxtPage class="min-h-screen" />
-    <Footer class="relative z-9000" />
+    <Footer class="relative z-90" />
   </div>
+
+  <Notivue v-slot="item">
+    <Notification :item="item" :theme="materialTheme">
+      <NotificationProgress :item="item" />
+    </Notification>
+  </Notivue>
 
   <AuthModal />
   <PaymentModal />

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { push } from "notivue";
+
 const paymentStore = usePaymentStore();
 const paymentModal = usePaymentModal();
 const authModal = useAuthModal();
@@ -41,10 +43,10 @@ async function purchase(productId: string, productCode: string) {
           if (success && d.Success) {
             paymentStore.data = d.Data;
             paymentModal.open();
-            // await navigateTo(d.Data.Url, {
-            //   external: true,
-            // });
           }
+        })
+        .catch((e: any) => {
+          push.error({ title: "Failed to purchase", message: e.data?.message || e.message });
         })
         .finally(() => {
           purchaseLoading.value = false;

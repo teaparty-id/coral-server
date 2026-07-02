@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   if (subs) {
     throw createError({
       status: 403,
-      statusMessage: "currently subscription still active",
+      statusMessage: "current subscription still active",
     });
   }
 
@@ -79,6 +79,13 @@ export default defineEventHandler(async (event) => {
       message: anyRes.Message || "Unknown error occured",
     });
   }
+
+  await setUserSession(event, {
+    user: {
+      ...session.user,
+      plan: plan?.plans.code,
+    },
+  });
 
   return {
     success: true,
