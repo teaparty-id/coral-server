@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const paymentStore = usePaymentStore();
+const paymentModal = usePaymentModal();
 const authModal = useAuthModal();
 const { loggedIn, user } = useUserSession();
 
@@ -10,29 +12,44 @@ function toggleExpanded() {
   expanded.value = !expanded.value;
 }
 
-async function purchase(productId: string) {
+async function purchase(productId: string, productCode: string) {
   if (!user.value) {
     return authModal.open("login");
   }
 
-  purchaseLoading.value = true;
-  $fetch("/api/payment", {
-    method: "POST",
-    body: JSON.stringify({
-      productId: productId,
-    }),
-  })
-    .then(async ({ success, data }) => {
-      const d = data as any;
-      if (success && d.Success) {
-        await navigateTo(d.Data.Url, {
-          external: true,
+  switch (productCode) {
+    case "free":
+      break;
+    case "enterprise":
+      await navigateTo("https://wa.me/6285159946600", {
+        external: true,
+        open: {
+          target: "_blank",
+        },
+      });
+      break;
+    default:
+      purchaseLoading.value = true;
+      $fetch("/api/payment", {
+        method: "POST",
+        body: JSON.stringify({
+          productId: productId,
+        }),
+      })
+        .then(async ({ success, data }) => {
+          const d = data as any;
+          if (success && d.Success) {
+            paymentStore.data = d.Data;
+            paymentModal.open();
+            // await navigateTo(d.Data.Url, {
+            //   external: true,
+            // });
+          }
+        })
+        .finally(() => {
+          purchaseLoading.value = false;
         });
-      }
-    })
-    .finally(() => {
-      purchaseLoading.value = false;
-    });
+  }
 }
 
 async function fetchPlans() {
@@ -132,7 +149,7 @@ onMounted(async () => {
                 class="btn w-full mt-8"
                 :class="plan.buttonClass"
                 :disabled="(loggedIn && user?.plan == plan.code) || purchaseLoading"
-                @click="purchase(plan.id)"
+                @click="purchase(plan.id, plan.code)"
               >
                 <div :class="purchaseLoading && 'loading'">
                   {{ plan.button }}

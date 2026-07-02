@@ -77,4 +77,5 @@ onMounted(() => {
   </div>
 
   <AuthModal />
+  <PaymentModal />
 </template>

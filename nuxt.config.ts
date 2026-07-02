@@ -11,5 +11,10 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/css/main.css"],
-  modules: ["@nuxt/image", "@nuxt/icon", "nuxt-auth-utils"],
+  modules: [
+    "@nuxt/image",
+    "@nuxt/icon",
+    "nuxt-auth-utils",
+    "@pinia/nuxt",
+  ],
 });

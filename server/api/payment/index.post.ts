@@ -33,23 +33,25 @@ export default defineEventHandler(async (event) => {
   const timestamp = generateTimestamp();
   const plan = product[0];
   const formData = {
+    name: session.user.name,
+    email: session.user.email,
+    phone: session.user.phone || "088888888888",
+    amount: plan?.plan_prices?.price,
+    notifyUrl: "https://coraline.biz.id/api/payment/cb/notify",
+    comments: plan?.plans.description!,
+    referenceId: `INV${timestamp}-${session.user.id}`,
+    paymentMethod: "qris",
+    paymentChannel: "mpm",
     product: [plan?.plans.name!],
     qty: [1],
     price: [plan?.plan_prices?.price],
-    description: [plan?.plans.description!],
     returnUrl: "https://coraline.biz.id",
-    notifyUrl: "https://coraline.biz.id/api/payment/cb/notify",
-    referenceId: `INV${timestamp}-${session.user.id}`,
     feeDirection: "BUYER",
-    paymentMethod: "qris,va",
-    buyerName: session.user.name,
-    buyerEmail: session.user.email,
-    expired: 1,
   };
 
   const signature = await generateIPaymuSignature({ apiKey: seed.key, method: "POST", va: seed.va, body: formData });
   const res = await ky
-    .post("https://sandbox.ipaymu.com/api/v2/payment", {
+    .post("https://sandbox.ipaymu.com/api/v2/payment/direct", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -68,7 +70,7 @@ export default defineEventHandler(async (event) => {
       userId: session.user.id!,
       planId: plan?.plans.id!,
       priceId: plan?.plan_prices?.id!,
-      externalId: anyRes.Data.SessionID,
+      externalId: formData.referenceId,
       amount: plan?.plan_prices?.price!,
     });
   } else {
