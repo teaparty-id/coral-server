@@ -38,27 +38,33 @@ export function authUtils(event: H3Event<EventHandlerRequest>) {
     };
   }
 
-  async function refreshUserSession() {
+  async function refreshUserSession(username?: string) {
     const session = await getUserSession(event);
+    username = username || session.user?.name;
 
-    if (session.user) {
-      const data = await UserRepository.findByUsername(session.user.name);
-      const subs = await SubscriptionRepository.findStatusByUserId(session.user.id, "active");
-
-      if (data) {
-        await setUserSession(event, {
-          user: {
-            id: data.id,
-            name: data.name,
-            email: data.email,
-            plan: subs?.plans?.code || undefined,
-          },
-        });
+    if (username) {
+      const data = await UserRepository.findByUsername(username);
+      if (!data) {
+        return {
+          ok: false,
+          status: 404,
+          message: "account not found",
+        };
       }
+
+      const subs = await SubscriptionRepository.findStatusByUserId(data?.id, "active");
+      await setUserSession(event, {
+        user: {
+          id: data.id,
+          name: data.name,
+          email: data.email,
+          plan: subs?.plans?.code,
+        },
+      });
     }
 
     return {
-      success: true,
+      ok: true,
     };
   }
 
