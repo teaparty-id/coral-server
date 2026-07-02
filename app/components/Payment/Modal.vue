@@ -49,17 +49,15 @@ async function checkStatus() {
     <div class="modal-box max-w-md border border-base-300 bg-base-200 p-0 overflow-hidden">
       <!-- Header -->
       <div class="bg-gradient-to-r from-primary to-secondary p-6 text-center text-primary-content">
-        <Icon name="material-symbols:qr-code-2-rounded" size="46" />
-
         <h2 class="mt-3 text-2xl font-bold">Scan QRIS</h2>
 
-        <p class="mt-1 text-sm opacity-80">Scan menggunakan aplikasi e-wallet atau mobile banking.</p>
+        <p class="mt-1 text-sm opacity-80 hidden lg:visible">Scan menggunakan aplikasi e-wallet atau mobile banking.</p>
       </div>
 
-      <div class="flex flex-col space-y-5 p-6 max-h-142 overflow-scroll">
+      <div class="flex flex-col space-y-5 p-6 max-h-92 lg:max-h-142 overflow-scroll">
         <!-- QR -->
-        <div class="flex w-full h-full justify-center items-center rounded-2xl bg-white p-5">
-          <img v-if="qrCode" :src="qrCode" class="mx-auto w-full max-w-xs" />
+        <div class="flex justify-center items-center rounded-2xl bg-white p-5">
+          <img v-if="qrCode" :src="qrCode" class="mx-auto w-full max-w-32 lg:max-w-64" />
           <div v-else class="loading loading-xl"></div>
         </div>
 
